@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Bookings | Ramya Residency</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+  }
+
+  .my-bookings {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 0 20px;
+  }
+
+  .my-bookings h2 {
+    text-align: center;
+    color: #3b161e;
+    margin-bottom: 30px;
+  }
+
+  #bookingsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .booking-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+
+  .booking-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .booking-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .booking-card-content {
+    padding: 15px 20px;
+  }
+
+  .booking-card h3 {
+    margin: 0 0 10px;
+    color: #3b161e;
+  }
+
+  .booking-card p {
+    margin: 5px 0;
+    color: #555;
+    font-size: 0.95rem;
+  }
+
+  .booking-card button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #3b161e;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+  }
+
+  .booking-card button:hover {
+    background-color: #5c1d2f;
+  }
+
+  .no-bookings {
+    text-align: center;
+    color: #555;
+    font-size: 1.1rem;
+  }
+</style>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+        <section class="navbar">
+        <div class="nav-1">
+            <h1>Ramya Residency</h1>
+        </div>
+
+        <div class="nav-2">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="my-bookings.html">Booking</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+ <li class="user-menu" id="userMenu" style="display:none;">
+    <i class="fa-solid fa-circle-user" style="color: #3b161e; cursor:pointer;"></i>
+    <ul class="dropdown" id="userDropdown">
+        <li><a href="#" id="profileBtn">Profile</a></li>
+        <li><a href="profile.html" id="logoutBtn">Logout</a></li>
+    </ul>
+</li>
+
+
+            </ul>
+
+        </div>
+
+    </section>
+<section class="my-bookings">
+  <h2>My Bookings</h2>
+  <div id="bookingsContainer">
+    Loading your bookings...
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  if (!currentUser) {
+    alert("❌ You must login first!");
+    window.location.href = "login.html";
+    return;
+  }
+
+  const container = document.getElementById("bookingsContainer");
+  if (!container) return;
+
+  let bookings = []; // frontend state
+
+  async function fetchBookings() {
+    try {
+      const res = await fetch(`http://localhost:5000/api/bookings/user/${currentUser._id}`);
+      const data = await res.json();
+
+      if (!data.success || data.bookings.length === 0) {
+        container.innerHTML = "<p class='no-bookings'>No bookings found.</p>";
+        return;
+      }
+
+      // Remove duplicates by booking ID
+    bookings = [...new Map(
+  data.bookings.map(b => [`${b.roomType}-${b.checkIn}-${b.checkOut}`, b])
+).values()];
+
+
+      renderBookings();
+    } catch (err) {
+      console.error(err);
+      container.innerHTML = "<p class='no-bookings'>Error loading bookings</p>";
+    }
+  }
+
+  function renderBookings() {
+    if (bookings.length === 0) {
+      container.innerHTML = "<p class='no-bookings'>No bookings found.</p>";
+      return;
+    }
+
+    const roomImages = {
+      single: "singleroom.jpg",
+      double: "double.jpg",
+      family: "family.jpg",
+      deluxe: "deluxe.jpg",
+      suite: "suite.jpg",
+      studio: "studio.jpg",
+      executive: "executive.jpg",
+      economy: "economy.jpg",
+      twin: "double.jpg",
+      triple: "family.jpg",
+      connecting: "connecting.jpg",
+      accessible: "accessible.jpg",
+      penthouse: "penthouse.jpg",
+      honeymoon: "honeymoon.jpg",
+      apartment: "apartment.jpg"
+    };
+
+    container.innerHTML = bookings.map(b => `
+      <div class="booking-card" id="booking-${b._id}">
+        <img src="./images/${roomImages[b.roomType.toLowerCase()] || 'default-room.jpg'}" alt="${b.roomType} Room">
+        <div class="booking-card-content">
+          <h3>${b.roomType} Room</h3>
+          <p><strong>Check-in:</strong> ${new Date(b.checkIn).toLocaleDateString()}</p>
+          <p><strong>Check-out:</strong> ${new Date(b.checkOut).toLocaleDateString()}</p>
+          <p><strong>Guests:</strong> ${b.guests || 1}</p>
+          <p><strong>Payment:</strong> ${b.paymentMethod || "Cash"}</p>
+          <button onclick="cancelBooking('${b._id}')">Cancel Booking</button>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  window.cancelBooking = async function(id) {
+    if (!confirm("Are you sure you want to cancel this booking?")) return;
+
+    try {
+      const res = await fetch(`http://localhost:5000/api/bookings/${id}`, {
+        method: "DELETE"
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        alert(data.message);
+        // remove from frontend state
+        bookings = bookings.filter(b => b._id !== id);
+        renderBookings();
+      } else {
+        alert(data.message);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Server error. Could not cancel booking.");
+    }
+  }
+
+  // Initial fetch
+  fetchBookings();
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Details - Ramya Residency</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR (same as your other pages) -->
+     <!-- Navbar -->
+    <section class="navbar">
+        <div class="nav-1">
+            <h1>Ramya Residency</h1>
+        </div>
+
+        <div class="nav-2">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+
+                <i class="fa-solid fa-circle-user" style="color: #3b161e;"></i>
+
+            </ul>
+
+        </div>
+
+    </section>
+    <!-- ROOM DETAILS -->
+    <section class="roomdetails-wrapper">
+        
+        <h1 id="roomdetails-title"></h1>
+        <p id="roomdetails-price" class="roomdetails-price"></p>
+
+        <!-- Images -->
+        <div class="roomdetails-gallery">
+            <img id="roomdetails-main-img" class="roomdetails-main-img" src="" alt="Room Image">
+            <div class="roomdetails-thumbnails" id="roomdetails-thumbnails"></div>
+        </div>
+
+        <!-- Description -->
+        <div class="roomdetails-info">
+            <h2>Description</h2>
+            <p id="roomdetails-description"></p>
+
+            <h2>Amenities</h2>
+            <ul id="roomdetails-amenities"></ul>
+
+            <a href="#" id="bookRoomButton" class="btn btn-primary">Book This Room</a>
+            <a href="rooms.html" class="btn btn-secondary">Back to Rooms</a>
+        </div>
+    </section>
+
+    <script>
+      
+    const rooms = {
+        single: {
+            title: "Single Room",
+            price: "₹500 / Night",
+            images: ["./images/singleroom.jpg", "./images/banner.jpg", "./images/download.jpg"],
+            description: "A cozy room ideal for one person with comfortable bedding and basic amenities.",
+            amenities: ["Free Wi-Fi", "Air Conditioning", "TV", "Attached Bathroom", "Daily Room Service"]
+        },
+
+        double: {
+            title: "Double Room",
+            price: "₹700 / Night",
+            images: ["./images/double.jpg", "./images/banner.jpg"],
+            description: "Comfortable room for two guests with a peaceful atmosphere.",
+            amenities: ["Wi-Fi", "AC", "TV", "Wardrobe", "Hot Water"]
+        },
+
+        family: {
+            title: "Family Room",
+            price: "₹1200 / Night",
+            images: ["./images/family.jpg", "./images/banner.jpg"],
+            description: "Perfect for families, includes extra space and additional bedding.",
+            amenities: ["Wi-Fi", "3 Beds", "TV", "Attached Bathroom", "Daily Cleaning"]
+        },
+
+        deluxe: {
+            title: "Deluxe Room",
+            price: "₹1400 / Night",
+            images: ["./images/download.jpg", "./images/banner.jpg"],
+            description: "A premium room offering enhanced comfort and interior design.",
+            amenities: ["Premium Bed", "Wi-Fi", "AC", "TV", "Room Service"]
+        },
+
+        suite: {
+            title: "Suite",
+            price: "₹2200 / Night",
+            images: ["./images/banner.jpg", "./images/double.jpg"],
+            description: "A luxurious suite offering spacious comfort and elegant styling.",
+            amenities: ["King Bed", "Wi-Fi", "Mini Sofa", "TV", "Room Service"]
+        },
+
+        studio: {
+            title: "Studio Room",
+            price: "₹900 / Night",
+            images: ["./images/singleroom.jpg", "./images/double.jpg"],
+            description: "Compact studio room designed for convenience and comfort.",
+            amenities: ["Wi-Fi", "Smart TV", "AC", "Attached Bathroom"]
+        },
+
+        executive: {
+            title: "Executive Suite",
+            price: "₹3000 / Night",
+            images: ["./images/banner.jpg", "./images/family.jpg"],
+            description: "Ideal for business travelers with workspace and elegant interiors.",
+            amenities: ["Work Desk", "Wi-Fi", "AC", "TV", "Room Service"]
+        },
+
+        economy: {
+            title: "Economy Room",
+            price: "₹350 / Night",
+            images: ["./images/singleroom.jpg", "./images/banner.jpg"],
+            description: "Affordable room option for a simple and short stay.",
+            amenities: ["Fan / AC", "Attached Bath", "Daily Cleaning"]
+        },
+
+        twin: {
+            title: "Twin Room",
+            price: "₹800 / Night",
+            images: ["./images/double.jpg", "./images/banner.jpg"],
+            description: "Room with twin beds, ideal for friends or colleagues.",
+            amenities: ["Wi-Fi", "AC", "TV", "Attached Bathroom"]
+        },
+
+        triple: {
+            title: "Triple Room",
+            price: "₹1300 / Night",
+            images: ["./images/family.jpg", "./images/double.jpg"],
+            description: "Spacious room suitable for three guests.",
+            amenities: ["Wi-Fi", "3 Beds", "Wardrobe", "Bathroom", "TV"]
+        },
+
+        connecting: {
+            title: "Connecting Room",
+            price: "₹1600 / Night",
+            images: ["./images/banner.jpg", "./images/double.jpg"],
+            description: "Two rooms with an internal door, perfect for families.",
+            amenities: ["Wi-Fi", "2 Rooms", "Attached Bathrooms", "TV", "AC"]
+        },
+
+        accessible: {
+            title: "Accessible Room",
+            price: "₹950 / Night",
+            images: ["./images/singleroom.jpg", "./images/double.jpg"],
+            description: "Room designed with accessibility features for comfortable mobility.",
+            amenities: ["Wheelchair Access", "Wide Doors", "Wi-Fi", "AC", "TV"]
+        },
+
+        penthouse: {
+            title: "Penthouse Suite",
+            price: "₹5000 / Night",
+            images: ["./images/banner.jpg", "./images/family.jpg"],
+            description: "Luxury top-floor suite with a stunning view and premium furnishings.",
+            amenities: ["King Bed", "Living Area", "Wi-Fi", "TV", "Room Service"]
+        },
+
+        honeymoon: {
+            title: "Honeymoon Suite",
+            price: "₹3500 / Night",
+            images: ["./images/download.jpg", "./images/banner.jpg"],
+            description: "Beautifully decorated suite perfect for couples.",
+            amenities: ["Luxury Bed", "Romantic Lighting", "Wi-Fi", "Room Service"]
+        },
+
+        apartment: {
+            title: "Serviced Apartment",
+            price: "₹2600 / Night",
+            images: ["./images/banner.jpg", "./images/family.jpg"],
+            description: "Ideal for long stays with kitchen and living space.",
+            amenities: ["Kitchen", "Wi-Fi", "TV", "AC", "Wardrobe"]
+        }
+    };
+
+        // Get room from URL
+        const params = new URLSearchParams(window.location.search);
+        const roomKey = params.get("room");
+
+        const room = rooms[roomKey];
+
+        document.getElementById("roomdetails-title").textContent = room.title;
+        document.getElementById("roomdetails-price").textContent = room.price;
+        document.getElementById("roomdetails-description").textContent = room.description;
+
+        // Load Main Image
+        document.getElementById("roomdetails-main-img").src = room.images[0];
+
+        // Load Thumbnails
+        const thumbsContainer = document.getElementById("roomdetails-thumbnails");
+        room.images.forEach(img => {
+            const thumb = document.createElement("img");
+            thumb.src = img;
+            thumb.onclick = () => document.getElementById("roomdetails-main-img").src = img;
+            thumbsContainer.appendChild(thumb);
+        });
+
+        // Load Amenities
+        const amenitiesList = document.getElementById("roomdetails-amenities");
+        room.amenities.forEach(a => {
+            const li = document.createElement("li");
+            li.textContent = "✔ " + a;
+            amenitiesList.appendChild(li);
+        });
+
+        // Book button
+        document.getElementById("bookRoomButton").href = "book.html?room=" + roomKey;
+    </script>
+
+</body>
+</html>

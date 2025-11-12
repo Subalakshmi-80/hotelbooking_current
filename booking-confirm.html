@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Confirmation | Ramya Residency</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="confirmation-page">
+
+  <header class="booking-header">
+    <h1>Ramya Residency</h1>
+  </header>
+
+  <section class="confirmation-section">
+    <h2>🎉 Booking Confirmed!</h2>
+    <p>Thank you for booking with Ramya Residency. Your reservation details are below:</p>
+
+    <div class="confirmation-card">
+      <h3>Booking Summary</h3>
+      <ul id="bookingSummary"></ul>
+    </div>
+
+    <div class="confirmation-actions">
+      <a href="index.html" class="btn btn-primary">Go to Home</a>
+      <a href="rooms.html" class="btn btn-secondary">Book Another Room</a>
+    </div>
+  </section>
+
+  <footer class="booking-footer">
+    <p>&copy; 2025 Ramya Residency. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Retrieve booking data
+    const data = JSON.parse(localStorage.getItem("latestBooking"));
+
+    if (!data) {
+      document.getElementById("bookingSummary").innerHTML =
+        "<li>No booking details found.</li>";
+    } else {
+      const summary = `
+  <li><strong>Name:</strong> ${data.fullName}</li>
+  <li><strong>Email:</strong> ${data.email}</li>
+  <li><strong>Phone:</strong> ${data.phone}</li>
+  <li><strong>Address:</strong> ${data.address}</li>
+  <li><strong>Aadhaar:</strong> ${data.aadhar}</li>
+
+  <!-- Correct Room Field -->
+  <li><strong>Room Type:</strong> ${data.roomType}</li>
+
+  <li><strong>Check-in Date:</strong> ${data.checkIn}</li>
+  <li><strong>Check-out Date:</strong> ${data.checkOut}</li>
+
+  <!-- Correct Guests Field -->
+  <li><strong>Guests:</strong> ${data.guests}</li>
+
+  <li><strong>Payment Method:</strong> ${data.paymentMethod}</li>
+`;
+
+      document.getElementById("bookingSummary").innerHTML = summary;
+      localStorage.removeItem("latestBooking"); // Clear after showing
+    }
+
+    
+  </script>
+<script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramya Residency</title>
+
+    <!-- Link to css -->
+    <link rel="stylesheet" href="style.css">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- import font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="about-page">
+    <!-- Navbar -->
+    <section class="navbar">
+        <div class="nav-1">
+            <h1>Ramya Residency</h1>
+        </div>
+
+        <div class="nav-2">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="my-bookings.html">Booking</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+
+                 <li class="user-menu" id="userMenu" style="display:none;">
+            <i class="fa-solid fa-circle-user" style="color: #3b161e; cursor:pointer;"></i>
+            <ul class="dropdown" id="userDropdown">
+                <li><a href="#" id="profileBtn">Profile</a></li>
+                <li><a href="#" id="logoutBtn">Logout</a></li>
+            </ul>
+        </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+    <!-- About Hero -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-content">
+                <h1>About Ramya Residency</h1>
+                <p class="lead">For over a decade we have welcomed guests with warm hospitality, clean rooms and convenient locations. Our focus is on comfort, value and a friendly local experience.</p>
+                <div class="hero-ctas">
+                    <a class="btn btn-primary" href="rooms.html">View Rooms</a>
+                    <a class="btn btn-secondary" href="contact.html">Contact Us</a>
+                </div>
+            </div>
+
+            <div class="hero-media" aria-hidden="true">
+                <img src="./images/banner.jpg" alt="Ramya Residency building" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Our mission & story -->
+    <section class="section mission-story">
+        <div class="container">
+            <div style="display:flex; gap:28px; flex-wrap:wrap; align-items:center;">
+                <div style="flex:1 1 420px; min-width:260px;">
+                    <h2>Our Mission</h2>
+                    <p class="muted">To provide clean, comfortable and affordable stays for travelers while delivering genuine hospitality that makes every guest feel at home.</p>
+                    <p>We believe small touches — a warm greeting, a well-made bed and helpful local tips — make a big difference. Our team works daily to keep standards high and service personal.</p>
+                </div>
+
+                <div style="flex:1 1 320px; min-width:240px;">
+                    <h3>Our Story</h3>
+                    <p class="muted">Started by a local family, Ramya Residency grew from a single guesthouse into a trusted local lodging over the years. We continue to focus on friendly service and clean rooms.</p>
+                    <ul class="amenities" style="margin-top:12px;">
+                        <li><i class="fa fa-map-marker-alt"></i> Central locations</li>
+                        <li><i class="fa fa-thumbs-up"></i> Friendly staff</li>
+                        <li><i class="fa fa-check-circle"></i> Daily housekeeping</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section features">
+        <div class="container">
+            <h2>What we offer</h2>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:18px; margin-top:18px;">
+                <div class="menu-card">
+                    <h3>Comfortable Rooms</h3>
+                    <p class="muted">Thoughtfully furnished rooms with quality bedding and modern amenities.</p>
+                </div>
+                <div class="menu-card">
+                    <h3>Breakfast Available</h3>
+                    <p class="muted">Start your day with a simple, tasty breakfast — optional with your stay.</p>
+                </div>
+                <div class="menu-card">
+                    <h3>Free Wi‑Fi</h3>
+                    <p class="muted">Reliable internet access across the property for work and leisure.</p>
+                </div>
+                <div class="menu-card">
+                    <h3>Local Guidance</h3>
+                    <p class="muted">Our staff can recommend places to eat, visit and explore around the city.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="section team-section">
+        <div class="container">
+            <h2>Meet the team</h2>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap:18px; margin-top:18px;">
+                <div class="review-card">
+                    <img src="./images/ramya.jpg" alt="Manager" style="width:100%; height:140px; object-fit:cover; border-radius:6px;" />
+                    <h4 style="margin-top:8px;">Mrs. Ramya</h4>
+                    <p class="muted">Founder & Manager — welcoming guests and overseeing hospitality.</p>
+                </div>
+                <div class="review-card">
+                    <img src="./images/arun.jpg" alt="Reception" style="width:100%; height:140px; object-fit:cover; border-radius:6px;" />
+                    <h4 style="margin-top:8px;">Mr. Arun</h4>
+                    <p class="muted">Front desk & guest relations — happy to help with bookings and local tips.</p>
+                </div>
+                <div class="review-card">
+                    <img src="./images/housekeeping.jpg" alt="Housekeeping" style="width:100%; height:140px; object-fit:cover; border-radius:6px;" />
+                    <h4 style="margin-top:8px;">Team — Housekeeping</h4>
+                    <p class="muted">Keeping rooms and common areas clean and comfortable every day.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / CTA -->
+    <section class="section contact-cta">
+        <div class="container">
+            <h2>Have questions or want to book?</h2>
+            <p class="muted">Our team is available to help you choose the right room and get the best rates.</p>
+            <a class="btn btn-primary" href="contact.html">Contact Us</a>
+            <a class="btn btn-secondary" href="rooms.html" style="margin-left:12px;">View Rooms</a>
+        </div>
+    </section>
+
+    <!-- keep existing footer (if you have one in a site-wide include) you can add it here; otherwise pages share footer on index/rooms -->
+<script src="./script.js"></script>
+    </body>
+    </html>

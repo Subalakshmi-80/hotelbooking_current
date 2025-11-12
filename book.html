@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramya Residency</title>
+
+    <!-- Link to css -->
+    <link rel="stylesheet" href="style.css">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- import font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <section class="navbar">
+        <div class="nav-1">
+            <h1>Ramya Residency</h1>
+        </div>
+
+        <div class="nav-2">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="my-bookings.html">Booking</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" >Login</a></li>
+
+                <li class="user-menu" id="userMenu" style="display:none;">
+    <i class="fa-solid fa-circle-user" style="color: #3b161e; cursor:pointer;"></i>
+    <ul class="dropdown" id="userDropdown">
+        <li><a href="#" id="profileBtn">Profile</a></li>
+        <li><a href="#" id="logoutBtn">Logout</a></li>
+    </ul>
+</li>
+
+            </ul>
+
+        </div>
+
+    </section>
+  
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Your Stay | Ramya Residency</title>
+
+  <!-- Existing global styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="booking-page">
+
+  
+  <section class="booking-section">
+    <h2>Book Your Stay</h2>
+    <p>Please fill in your details to confirm your reservation</p>
+
+    <form class="booking-form" id="bookingForm">
+      <!-- Guest Details -->
+      <h3>Guest Details</h3>
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" placeholder="Enter your name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="you@example.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="+91 98765 43210" required>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address</label>
+        <textarea id="address" rows="2" placeholder="Enter your address" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="aadhar">Aadhaar Number</label>
+        <input type="text" id="aadhar" placeholder="XXXX-XXXX-XXXX" required>
+      </div>
+
+      <!-- Booking Details -->
+      <h3>Booking Details</h3>
+      <div class="form-group">
+        <label for="roomType">Room Type</label>
+        <input type="text" id="roomType" readonly>
+      </div>
+
+      <div class="form-group">
+        <label for="checkIn">Check-in Date</label>
+        <input type="date" id="checkIn" required>
+      </div>
+
+      <div class="form-group">
+        <label for="checkOut">Check-out Date</label>
+        <input type="date" id="checkOut" required>
+      </div>
+
+      <div class="form-group">
+        <label for="guests">Number of Guests</label>
+        <select id="guests" required>
+          <option value="">Select</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4+</option>
+        </select>
+      </div>
+
+      <div class="form-group full">
+        <label for="requests">Special Requests</label>
+        <textarea id="requests" rows="3" placeholder="Any preferences or notes..."></textarea>
+      </div>
+
+      <!-- Payment Details -->
+      <h3>Payment Details</h3>
+      <div class="form-group">
+        <label for="paymentMethod">Payment Method</label>
+        <select id="paymentMethod" required>
+          <option value="">Select Method</option>
+          <option value="card">Credit/Debit Card</option>
+          <option value="upi">UPI</option>
+          <option value="cash">Pay at Hotel</option>
+        </select>
+      </div>
+
+      <div class="payment-section" id="paymentCardSection">
+        <div class="form-group">
+          <label for="cardNumber">Card Number</label>
+          <input type="text" id="cardNumber" placeholder="XXXX XXXX XXXX XXXX">
+        </div>
+
+        <div class="form-group">
+          <label for="expiry">Expiry Date</label>
+          <input type="month" id="expiry">
+        </div>
+
+        <div class="form-group">
+          <label for="cvv">CVV</label>
+          <input type="password" id="cvv" placeholder="XXX">
+        </div>
+      </div>
+
+      <div class="payment-section" id="paymentUpiSection" style="display: none;">
+        <div class="form-group full">
+          <label for="upiId">UPI ID</label>
+          <input type="text" id="upiId" placeholder="example@upi">
+        </div>
+      </div>
+
+      <div class="form-group full submit">
+        <button type="submit" class="btn-submit">Confirm Booking</button>
+      </div>
+    </form>
+  </section>
+
+  <footer class="booking-footer">
+    <p>&copy; 2025 Ramya Residency. All rights reserved.</p>
+  </footer>
+  <script>
+
+  
+
+document.getElementById("bookingForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  if (!currentUser) {
+    alert("You must login first!");
+    return window.location.href = "login.html";
+  }
+
+  const bookingData = {
+    userId: currentUser._id,
+    fullName: document.getElementById("fullName").value,
+    email: document.getElementById("email").value,
+    phone: document.getElementById("phone").value,
+    address: document.getElementById("address").value,
+    aadhar: document.getElementById("aadhar").value,
+    roomType: document.getElementById("roomType").value.toLowerCase(),
+    checkIn: document.getElementById("checkIn").value,
+    checkOut: document.getElementById("checkOut").value,
+    guests: document.getElementById("guests").value,
+    paymentMethod: document.getElementById("paymentMethod").value,
+  };
+
+  try {
+    const res = await fetch("http://localhost:5000/api/bookings", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(bookingData),
+    });
+
+    const data = await res.json();
+   if (data.success) {
+  localStorage.setItem("latestBooking", JSON.stringify(bookingData));
+  window.location.href = "booking-confirm.html";
+
+
+
+    } else {
+      alert("Booking failed: " + data.message);
+    }
+
+  } catch (err) {
+    console.error(err);
+    alert("Server error");
+  }
+});
+const roomTypeInput = document.getElementById("roomType");
+      const urlParams = new URLSearchParams(window.location.search);
+      const room = urlParams.get("room");
+      if (room && roomTypeInput) roomTypeInput.value = decodeURIComponent(room);
+
+
+
+
+  // const urlParams = new URLSearchParams(window.location.search);
+  // const room = urlParams.get("room");
+  // if (room) document.getElementById("roomType").value = decodeURIComponent(room);
+
+  // // Payment method toggle
+  // const paymentSelect = document.getElementById("paymentMethod");
+  // const cardSection = document.getElementById("paymentCardSection");
+  // const upiSection = document.getElementById("paymentUpiSection");
+
+  // paymentSelect.addEventListener("change", () => {
+  //   cardSection.style.display = paymentSelect.value === "card" ? "grid" : "none";
+  //   upiSection.style.display = paymentSelect.value === "upi" ? "grid" : "none";
+  // });
+
+  // // Form submission
+  // document.getElementById("bookingForm").addEventListener("submit", (e) => {
+  //   e.preventDefault();
+
+  //   // Collect booking data
+  //   const bookingData = {
+  //     fullName: document.getElementById("fullName").value,
+  //     email: document.getElementById("email").value,
+  //     phone: document.getElementById("phone").value,
+  //     address: document.getElementById("address").value,
+  //     aadhar: document.getElementById("aadhar").value,
+  //     roomType: document.getElementById("roomType").value,
+  //     checkIn: document.getElementById("checkIn").value,
+  //     checkOut: document.getElementById("checkOut").value,
+  //     guests: document.getElementById("guests").value,
+  //     paymentMethod: document.getElementById("paymentMethod").value,
+  //   };
+
+  //   // Save to localStorage
+  //   localStorage.setItem("latestBooking", JSON.stringify(bookingData));
+
+  //   // Redirect to confirmation page
+  //   window.location.href = "booking-confirm.html";
+  // });</script> -->
+  <script>
+   
+  document.addEventListener("DOMContentLoaded", () => {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    // ❌ Redirect immediately if not logged in
+    if (!currentUser) {
+      alert("❌ You must login first!");
+      window.location.href = "login.html";
+      return; // Stop the rest of the script
+    }
+
+    // Auto-fill booking form with logged-in user details
+    document.getElementById("fullName").value = currentUser.name || "";
+    document.getElementById("email").value = currentUser.email || "";
+    document.getElementById("phone").value = currentUser.phone || "";
+    document.getElementById("address").value = currentUser.address || "";
+    document.getElementById("aadhar").value = currentUser.aadhar || "";
+
+    // Set room type from URL
+    const roomTypeInput = document.getElementById("roomType");
+    const urlParams = new URLSearchParams(window.location.search);
+    const room = urlParams.get("room");
+    if (room && roomTypeInput) roomTypeInput.value = decodeURIComponent(room);
+
+    // Payment toggle
+    const paymentSelect = document.getElementById("paymentMethod");
+    const cardSection = document.getElementById("paymentCardSection");
+    const upiSection = document.getElementById("paymentUpiSection");
+
+    paymentSelect?.addEventListener("change", () => {
+      cardSection.style.display = paymentSelect.value === "card" ? "grid" : "none";
+      upiSection.style.display = paymentSelect.value === "upi" ? "grid" : "none";
+    });
+
+    // Booking form submission
+    document.getElementById("bookingForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const bookingData = {
+        userId: currentUser._id,
+        fullName: document.getElementById("fullName").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        address: document.getElementById("address").value,
+        aadhar: document.getElementById("aadhar").value,
+        roomType: document.getElementById("roomType").value.toLowerCase(),
+        checkIn: document.getElementById("checkIn").value,
+        checkOut: document.getElementById("checkOut").value,
+        guests: document.getElementById("guests").value,
+        paymentMethod: document.getElementById("paymentMethod").value,
+        requests: document.getElementById("requests").value || ""
+      };
+
+      try {
+        const res = await fetch("http://localhost:5000/api/bookings", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(bookingData),
+        });
+
+        const data = await res.json();
+        if (data.success) {
+          localStorage.setItem("latestBooking", JSON.stringify(bookingData));
+
+          window.location.href = "booking-confirm.html";
+        } else {
+          alert("Booking failed: " + data.message);
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Server error");
+      }
+    });
+  });
+
+  
+</script>
+
+ 
+<script src="./script.js"></script>
+</body>
+</html>
+
+
+    

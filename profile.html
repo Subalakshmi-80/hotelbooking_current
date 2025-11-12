@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Poppins, sans-serif;
+            background: #f7f3f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .profile-wrapper {
+            max-width: 850px;
+            margin: 60px auto;
+            background: #ffffff;
+            padding: 35px 45px;
+            border-radius: 18px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
+        }
+
+        .top-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 120px;
+            object-fit: cover;
+            border: 4px solid #3b161e;
+        }
+
+        .upload-btn {
+            display: inline-block;
+            background: #3b161e;
+            padding: 8px 14px;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 12px;
+        }
+
+        .profile-name {
+            font-size: 28px;
+            font-weight: 600;
+            margin-top: 10px;
+            color: #3b161e;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-top: 35px;
+        }
+
+        .detail-box {
+            background: #f7f3f5;
+            padding: 15px 18px;
+            border-radius: 10px;
+            border-left: 5px solid #3b161e;
+        }
+
+        .detail-box label {
+            font-size: 13px;
+            color: #6a5555;
+        }
+
+        .detail-box p {
+            font-size: 18px;
+            margin-top: 4px;
+            color: #3b161e;
+            font-weight: 500;
+        }
+
+        .action-buttons {
+            text-align: center;
+            margin-top: 35px;
+        }
+
+        .btn {
+            background: #3b161e;
+            color: #fff;
+            padding: 12px 26px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+<section class="navbar">
+        <div class="nav-1">
+            <h1>Ramya Residency</h1>
+        </div>
+
+        <div class="nav-2">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+
+
+            </ul>
+
+        </div>
+
+    </section>
+    <div class="profile-wrapper">
+        <div class="top-section">
+            <img id="profilePhoto" class="profile-img" src="" alt="Profile">
+            <br>
+            
+
+            <h2 class="profile-name" id="profileName"></h2>
+        </div>
+
+        <div class="details-grid">
+            <div class="detail-box">
+                <label>Email</label>
+                <p id="profileEmail"></p>
+            </div>
+
+            <div class="detail-box">
+                <label>Mobile</label>
+                <p id="profileMobile"></p>
+            </div>
+
+            <div class="detail-box">
+                <label>Aadhar Number</label>
+                <p id="profileAadhar"></p>
+            </div>
+
+            <div class="detail-box">
+                <label>Address</label>
+                <p id="profileAddress"></p>
+            </div>
+
+            <div class="detail-box">
+                <label>Gender</label>
+                <p id="profileGender"></p>
+            </div>
+
+            <div class="detail-box">
+                <label>Date of Birth</label>
+                <p id="profileDOB"></p>
+            </div>
+
+            <div class="detail-box">
+                <label>Joined On</label>
+                <p id="profileJoined"></p>
+            </div>
+
+            <div class="detail-box">
+                <label>Total Bookings</label>
+                <p id="profileBookings">0</p>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn" onclick="window.location.href='edit_profile.html'">Edit Profile</button>
+            <button class="btn" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        const user = JSON.parse(localStorage.getItem("currentUser"));
+
+        if (!user) {
+            alert("Please login first.");
+            window.location.href = "login.html";
+        }
+
+        document.getElementById("profileName").innerText = user.name || "Not Provided";
+document.getElementById("profileEmail").innerText = user.email || "Not Provided";
+document.getElementById("profileMobile").innerText = user.phone || "Not Provided";
+document.getElementById("profileAadhar").innerText = user.aadhar || "Not Provided";
+document.getElementById("profileAddress").innerText = user.address || "Not Provided";
+document.getElementById("profileGender").innerText = user.gender || "Not Provided";
+document.getElementById("profileDOB").innerText = user.dob || "Not Provided";
+document.getElementById("profileJoined").innerText = user.createdAt 
+    ? new Date(user.createdAt).toDateString() 
+    : "Not Available";
+
+
+        document.getElementById("profilePhoto").src = user.photo
+            ? `http://localhost:5000/uploads/${user.photo}`
+            : "images/default-user.png";
+
+        function logout() {
+            localStorage.removeItem("currentUser");
+            window.location.href = "login.html";
+        }
+
+        document.getElementById("photoUpload").addEventListener("change", function () {
+            const file = this.files[0];
+            if (file) {
+                document.getElementById("profilePhoto").src = URL.createObjectURL(file);
+            }
+        });
+    </script>
+
+</body>
+
+</html>

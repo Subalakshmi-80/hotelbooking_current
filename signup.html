@@ -1,0 +1,180 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramya Residency</title>
+
+    <!-- Link to css -->
+    <link rel="stylesheet" href="style.css">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> -->
+
+
+    <!-- import font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+      
+
+</head>
+
+<body class="signup-page">
+    <!-- Navbar -->
+    <section class="navbar">
+        <div class="nav-1">
+            <h1>Ramya Residency</h1>
+        </div>
+
+        <div class="nav-2">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+
+                   <li class="user-menu" id="userMenu" style="display:none;">
+            <i class="fa-solid fa-circle-user" style="color: #3b161e; cursor:pointer;"></i>
+            <ul class="dropdown" id="userDropdown">
+                <li><a href="#" id="profileBtn">Profile</a></li>
+                <li><a href="#" id="logoutBtn">Logout</a></li>
+            </ul>
+        </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+ <form id="signupForm" method="POST" enctype="multipart/form-data">
+
+
+
+  <div class="wrapper">
+    <h1>Sign Up</h1>
+    <p class="subtitle">Create your account</p>
+
+    <div class="input-group">
+      <label>Full Name</label>
+      <input type="text" name="name" placeholder="Enter your full name" required>
+    </div>
+
+    <div class="input-group">
+      <label>Photo</label>
+ <input type="file" name="photo" accept="image/*" required>
+
+    </div>
+
+     <div class="input-group">
+      <label>DOB</label>
+      <input type="date" name="dob" placeholder="Date of Birth" required>
+    </div>
+
+    <div class="input-group">
+      <label>Aadhar Number</label>
+      <input type="text" name="aadhar"placeholder="Enter your Aadhar number" required>
+    </div>
+ <div class="input-group">
+      <label>Phone</label>
+      <input type="text" name="phone" placeholder="Enter your Phone Number" required>
+    </div>
+    <div class="input-group">
+      <label>Address</label>
+      <textarea rows="3" name="address"placeholder="Enter your address" required></textarea>
+    </div>
+
+
+   <div class="input-group">
+  <label>Gender</label>
+  <select name="gender" required>
+    <option value="">Select Gender</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="Other">Other</option>
+  </select>
+</div>
+
+
+    <div class="input-group">
+      <label>Email</label>
+      <input type="email" name="email" placeholder="Enter your email" required>
+    </div>
+
+   
+    <div class="input-group">
+      <label>Password</label>
+      <input type="password" name="password" placeholder="Create a password" required>
+    </div>
+
+    <button class="btn" type="submit">Register</button>
+
+    <div class="login-link">
+      Already have an account? <a href="login.html">Login</a>
+    </div>
+  </div>
+  </form>
+
+
+<script>
+document.querySelector(".btn").addEventListener("click", async function (e) {
+  e.preventDefault(); // Stop page reload ✅
+
+  const name = document.querySelector('input[name="name"]').value.trim();
+  const email = document.querySelector('input[name="email"]').value.trim();
+  const password = document.querySelector('input[name="password"]').value.trim();
+  const aadhar = document.querySelector('input[name="aadhar"]').value.trim();
+  const address = document.querySelector('textarea[name="address"]').value.trim();
+  const photo = document.querySelector('input[name="photo"]').files[0];
+  const phone = document.querySelector('input[name="phone"]').value.trim();
+const dob = document.querySelector('input[name="dob"]').value.trim();
+const gender = document.querySelector('select[name="gender"]').value;
+
+ 
+  const formData = new FormData();
+  formData.append("name", name);
+  formData.append("email", email);
+  formData.append("password", password);
+  formData.append("aadhar", aadhar);
+  formData.append("address", address);
+  formData.append("photo", photo);
+formData.append("phone", phone);
+formData.append("dob", dob);
+formData.append("gender", gender);
+ try {
+    const res = await fetch("http://localhost:5000/api/register", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await res.json();
+
+     if (data.success) {
+      console.log(data.message);
+      alert(`✅ ${data.message}`); // ✅ Combine emoji + message in a single string
+      window.location.href = "login.html"; // Redirect after registration
+    } else {
+      console.log(data.message);
+      alert(`❌ ${data.message}`); // ✅ Error message
+    }
+  } catch (err) {
+    console.error(err);
+    alert(" Server error");
+  }
+});
+
+</script>
+
+
+
+</body>
+  </html>

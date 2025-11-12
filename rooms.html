@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramya Residency</title>
+
+    <!-- Link to css -->
+    <link rel="stylesheet" href="style.css">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- import font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <section class="navbar">
+        <div class="nav-1">
+            <h1>Ramya Residency</h1>
+        </div>
+
+        <div class="nav-2">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="my-bookings.html">Booking</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+
+                 <li class="user-menu" id="userMenu" style="display:none;">
+            <i class="fa-solid fa-circle-user" style="color: #3b161e; cursor:pointer;"></i>
+            <ul class="dropdown" id="userDropdown">
+                <li><a href="#" id="profileBtn">Profile</a></li>
+                <li><a href="#" id="logoutBtn">Logout</a></li>
+            </ul>
+        </li>
+            </ul>
+
+        </div>
+
+    </section>
+
+    <!-- Hero (same as homepage) -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-content">
+                <h1>Welcome to Ramya Residency</h1>
+                <p class="lead">Comfortable stays, friendly service, and great locations — your home away from home.</p>
+
+                <div class="hero-ctas">
+                    <a class="btn btn-primary" href="index.html">Back to Home</a>
+                    <a class="btn btn-secondary" href="contact.html">Contact Us</a>
+                </div>
+            </div>
+
+            <div class="hero-media" aria-hidden="true">
+                <img src="./images/banner.jpg" alt="Ramya Residency lobby" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Room search bar (top) -->
+    <section class="book">
+        <div class="check-room">
+            <div class="field">
+                <label for="checkin">Check In</label>
+                <input type="date" id="checkin" name="checkin" value="">
+            </div>
+
+            <div class="field">
+                <label for="checkout">Check Out</label>
+                <input type="date" id="checkout" name="checkout" value="">
+            </div>
+
+            <div class="field">
+                <label for="roomtype">Room Type</label>
+                <select id="roomtype" name="roomtype">
+                    <option value="any">Any type</option>
+                    <option value="single">Single</option>
+                    <option value="double">Double</option>
+                    <option value="family">Family</option>
+                    <option value="suite">Suite</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="adults">Adults</label>
+                <select id="adults" name="adults">
+                    <option value="1" selected>1</option>
+                    <option value="2" >2</option>
+                    <option value="3">3</option>
+                    <option value="4">4+</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="children">Children</label>
+                <select id="children" name="children">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+
+            <div class="field action">
+                <button class="check" id="searchRooms">Search Rooms</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Room types list (compact card grid, up to 15 types) -->
+    <main class="rooms">
+        <div class="container">
+            <h1>Available Room Types</h1>
+            <p class="rooms-intro">Browse room details, amenities and approximate rates. Click "Book" to reserve or "More Details" for full information.</p>
+
+            <!-- Search bar for filtering room types -->
+            <div class="room-search" style="margin-bottom:18px;">
+                <input id="roomSearch" type="search" placeholder="Search rooms (type 's' to filter)..." aria-label="Search rooms" />
+            </div>
+
+            <div class="room-grid">
+                <!-- 1 Single -->
+                <div class="card" data-room="single">
+                    <img src="./images/singleroom.jpg" alt="Single Room">
+                    <h4>Single Room</h4>
+                    <div><span class="badge">1 available</span></div>
+                    <div class="muted">Cozy room for one</div>
+                    <div class="price">₹500 / night</div>
+                    <div class="card-actions">
+                        <a class="btn btn-primary" onclick="bookRoom('Single Room')" href="book.html?room=single">Book</a> 
+                        <a class="btn btn-secondary" href="room-details.html?room=single">More Details</a>
+</div>
+                </div>
+
+                <!-- 2 Double -->
+                <div class="card" data-room="double">
+                    <img src="./images/double.jpg" alt="Double Room">
+                    <h4>Double Room</h4>
+                    <div><span class="badge">5 available</span></div>
+                    <div class="muted">Comfortable for two</div>
+                    <div class="price">₹700 / night</div>
+                    <div class="card-actions">
+                        <a class="btn btn-primary" href="book.html?room=double">Book</a> 
+                    <a class="btn btn-secondary" href="room-details.html?room=double">More Details</a>
+
+                    </div>
+                </div>
+
+                <!-- 3 Family -->
+                <div class="card" data-room="family">
+                    <img src="./images/family.jpg" alt="Family Room">
+                    <h4>Family Room</h4>
+                    <div><span class="badge">3 available</span></div>
+                    <div class="muted">Spacious for family</div>
+                    <div class="price">₹1200 / night</div>
+                    <div class="card-actions">
+                        <a class="btn btn-primary" href="book.html?room=family">Book</a>
+                 <a class="btn btn-secondary" href="room-details.html?room=family">More Details</a>
+</div>
+                </div>
+
+                <!-- 4 Deluxe -->
+                <div class="card" data-room="deluxe">
+                    <img src="./images/banner.jpg" alt="Deluxe Room">
+                    <h4>Deluxe Room</h4>
+                    <div><span class="badge">2 available</span></div>
+                    <div class="muted">Upgraded comforts</div>
+                    <div class="price">₹1400 / night</div>
+                    <div class="card-actions"><a class="btn btn-primary" href="book.html?room=deluxe">Book</a>
+                 <a class="btn btn-secondary" href="room-details.html?room=deluxe">More Details</a>
+</div>
+                </div>
+
+                <!-- 5 Suite -->
+                <div class="card" data-room="suite">
+                    <img src="./images/banner.jpg" alt="Suite">
+                    <h4>Suite</h4>
+                    <div><span class="badge">1 available</span></div>
+                    <div class="muted">Luxurious suite</div>
+                    <div class="price">₹2200 / night</div>
+                    <div class="card-actions">
+                        <a class="btn btn-primary" href="book.html?room=suite">Book</a> 
+                       <a class="btn btn-secondary" href="room-details.html?room=suite">More Details</a>
+</div>
+                </div>
+
+                <!-- 6 Studio -->
+                <div class="card" data-room="studio">
+                    <img src="./images/singleroom.jpg" alt="Studio">
+                    <h4>Studio</h4>
+                    <div><span class="badge">4 available</span></div>
+                    <div class="muted">Compact studio layout</div>
+                    <div class="price">₹900 / night</div>
+                    <div class="card-actions">
+                        <a class="btn btn-primary" href="book.html?room=studio">Book</a> 
+                             <a class="btn btn-secondary" href="room-details.html?room=studio">More Details</a>
+</div>
+                </div>
+
+                <!-- 7 Executive -->
+                <div class="card" data-room="executive">
+                    <img src="./images/banner.jpg" alt="Executive Suite">
+                    <h4>Executive Suite</h4>
+                    <div><span class="badge">1 available</span></div>
+                    <div class="muted">For business travellers</div>
+                    <div class="price">₹3000 / night</div>
+                    <div class="card-actions">
+                        <a class="btn btn-primary" href="book.html?room=executive">Book</a>
+                                 <a class="btn btn-secondary" href="room-details.html?room=executive">More Details</a>
+</div>
+                </div>
+
+                <!-- 8 Economy -->
+                <div class="card" data-room="economy">
+                    <img src="./images/singleroom.jpg" alt="Economy Room">
+                    <h4>Economy</h4>
+                    <div><span class="badge">10 available</span></div>
+                    <div class="muted">Budget friendly</div>
+                    <div class="price">₹350 / night</div>
+                    <div class="card-actions">
+                        <a class="btn btn-primary" href="book.html?room=economy">Book</a>
+                 <a class="btn btn-secondary" href="room-details.html?room=economy">More Details</a>
+</div>
+                </div>
+
+                <!-- 9 Twin -->
+                <div class="card" data-room="twin">
+                    <img src="./images/double.jpg" alt="Twin Room">
+                    <h4>Twin Room</h4>
+                    <div><span class="badge">2 available</span></div>
+                    <div class="muted">Two single beds</div>
+                    <div class="price">₹800 / night</div>
+                    <div class="card-actions">
+                        <a class="btn btn-primary" href="book.html?room=twin">Book</a> 
+                           <a class="btn btn-secondary" href="room-details.html?room=twin">More Details</a>
+</div>
+                </div>
+
+                <!-- 10 Triple -->
+                <div class="card" data-room="triple">
+                    <img src="./images/family.jpg" alt="Triple Room">
+                    <h4>Triple Room</h4>
+                    <div><span class="badge">1 available</span></div>
+                    <div class="muted">Room for three</div>
+                    <div class="price">₹1300 / night</div>
+                    <div class="card-actions">
+                        <a class="btn btn-primary" href="book.html?room=triple">Book</a>
+                              <a class="btn btn-secondary" href="room-details.html?room=triple">More Details</a>
+</div>
+                </div>
+
+                <!-- 11 Connecting -->
+                <div class="card" data-room="connecting">
+                    <img src="./images/banner.jpg" alt="Connecting Room">
+                    <h4>Connecting Room</h4>
+                    <div><span class="badge">2 available</span></div>
+                    <div class="muted">Adjoining rooms</div>
+                    <div class="price">₹1600 / night</div>
+                    <div class="card-actions">
+                        <a class="btn btn-primary" href="book.html?room=connecting">Book</a> 
+                                <a class="btn btn-secondary" href="room-details.html?room=connecting">More Details</a>
+</div>
+                </div>
+
+                <!-- 12 Accessible -->
+                <div class="card" data-room="accessible">
+                    <img src="./images/singleroom.jpg" alt="Accessible Room">
+                    <h4>Accessible</h4>
+                    <div><span class="badge">1 available</span></div>
+                    <div class="muted">Accessible facilities</div>
+                    <div class="price">₹950 / night</div>
+                    <div class="card-actions">
+                        <a class="btn btn-primary" href="book.html?room=accessible">Book</a>
+                         <a class="btn btn-secondary" href="room-details.html?room=accessible">More Details</a>
+</div>
+                </div>
+
+                <!-- 13 Penthouse -->
+                <div class="card" data-room="penthouse">
+                    <img src="./images/banner.jpg" alt="Penthouse">
+                    <h4>Penthouse</h4>
+                    <div><span class="badge">Sold out</span></div>
+                    <div class="muted">Top-floor luxury</div>
+                    <div class="price">₹5000 / night</div>
+                    <div class="card-actions">
+                        <a class="btn btn-primary" href="book.html?room=penthouse">Book</a> 
+                 <a class="btn btn-secondary" href="room-details.html?room=penthouse">More Details</a>
+</div>
+                </div>
+
+                <!-- 14 Honeymoon -->
+                <div class="card" data-room="honeymoon">
+                    <img src="./images/family.jpg" alt="Honeymoon Suite">
+                    <h4>Honeymoon Suite</h4>
+                    <div><span class="badge">Sold out</span></div>
+                    <div class="muted">Romantic retreat</div>
+                    <div class="price">₹3500 / night</div>
+                    <div class="card-actions"><a class="btn btn-primary" href="book.html?room=honeymoon">Book</a> <a class="btn btn-secondary" href="details/honeymoon.html">More Details</a></div>
+                </div>
+
+                <!-- 15 Serviced Apartment -->
+                <div class="card" data-room="apartment">
+                    <img src="./images/banner.jpg" alt="Serviced Apartment">
+                    <h4>Serviced Apartment</h4>
+                    <div><span class="badge">1 available</span></div>
+                    <div class="muted">Long-stay comforts</div>
+                    <div class="price">₹2600 / night</div>
+                    <div class="card-actions"><a class="btn btn-primary" href="book.html?room=apartment">Book</a> <a class="btn btn-secondary" href="details/apartment.html">More Details</a></div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    
+
+       <!-- <div class="rooms">
+  <div class="room-grid"></div>
+</div> -->
+
+    
+
+    <!-- Footer (same as home) -->
+   <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-col about">
+                <h3>Ramya Residency</h3>
+                <p>Comfortable stays with warm hospitality. Located centrally and close to local attractions.</p>
+            </div>
+
+            <nav class="footer-col quick-links" aria-label="Footer navigation">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rooms.html">Rooms</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="footer-col contact">
+                <h4>Contact</h4>
+                <address>
+                    12, Main Road,<br>
+                    Nagapattinam, TamilNadu - 611101<br>
+                    <a href="tel:+919900112233">+91 99001 12233</a><br>
+                    <a href="mailto:info@ramyaresidency.example">info@ramyaresidency.example</a>
+                </address>
+            </div>
+
+            <div class="footer-col social">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <small>© <span id="footer-year"></span> Ramya Residency — All rights reserved.</small>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  fetch("http://localhost:5000/api/rooms")
+    .then(res => res.json())
+    .then(data => {
+      const container = document.querySelector(".room-grid");
+      container.innerHTML = ""; // Clear old static cards
+
+      data.forEach(room => {
+        container.innerHTML += `
+          <div class="card" data-room="${room.type}">
+              <img src="./images/${room.image}" alt="${room.type} Room">
+              <h4>${room.type}</h4>
+              <div><span class="badge">${room.available > 0 ? room.available + " available" : "Sold Out"}</span></div>
+              <div class="muted">${room.description || "Comfortable room"}</div>
+              <div class="price">₹${room.price} / night</div>
+
+              <div class="card-actions">
+                ${
+                  room.available > 0 
+                  ? `<a class="btn btn-primary" href="book.html?room=${room.type}">Book</a>`
+                  : `<button class="btn btn-secondary" disabled style="opacity:.6;cursor:not-allowed;">Not Available</button>`
+                }
+                <a class="btn btn-secondary" href="room-details.html?room=${room.type}">More Details</a>
+              </div>
+          </div>
+        `;
+      });
+    })
+    .catch(err => console.log(err));
+});
+</script>
+
+
+
+
+
+
+</body>
+</html>

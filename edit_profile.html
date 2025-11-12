@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Edit Profile</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+body { font-family: Poppins, sans-serif; background: #f7f3f5; margin: 0; padding: 0; }
+.edit-wrapper { max-width: 650px; margin: 60px auto; background: #fff; padding: 35px 45px; border-radius: 18px; box-shadow: 0 10px 40px rgba(0,0,0,0.18);}
+h2 { text-align: center; color: #3b161e; margin-bottom: 25px; }
+.profile-photo-section { text-align: center; margin-bottom: 28px; }
+.profile-img { width: 150px; height: 150px; border-radius: 120px; object-fit: cover; border: 4px solid #3b161e; }
+.upload-label { display: inline-block; background: #3b161e; color: #fff; padding: 8px 14px; border-radius: 8px; margin-top: 12px; cursor: pointer; font-size: 14px; }
+form label { display: block; color: #3b161e; margin-top: 15px; font-size: 15px; font-weight: 500; }
+input, select, textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #c3b5ba; font-size: 14px; margin-top: 6px; }
+textarea { resize: none; height: 75px; }
+.action-buttons { text-align: center; margin-top: 25px; }
+.btn { background: #804545; color: #fff; padding: 12px 26px; border-radius: 8px; border: none; font-size: 16px; cursor: pointer; margin: 10px; }
+.btn:hover { opacity: 0.9; }
+.cancel-btn { background: #6a5555; }
+</style>
+</head>
+<body>
+
+<div class="edit-wrapper">
+    <h2>Edit Profile</h2>
+
+    <div class="profile-photo-section">
+        <img id="profilePreview" class="profile-img" src="" alt="Profile">
+        <br>
+        <label class="upload-label" for="photoInput"><i class="fa-solid fa-camera"></i> Change Photo</label>
+        <input type="file" id="photoInput" accept="image/*" style="display:none;">
+    </div>
+
+    <form id="editProfileForm">
+        <label>Name</label><input type="text" id="name">
+        <label>Mobile</label><input type="text" id="phone">
+        <label>Aadhar</label><input type="text" id="aadhar">
+        <label>Gender</label>
+        <select id="gender">
+            <option value="">Select</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+        <label>Date of Birth</label><input type="date" id="dob">
+        <label>Address</label><textarea id="address"></textarea>
+
+        <div class="action-buttons">
+            <button type="submit" class="btn">Save Changes</button>
+            <button type="button" class="btn cancel-btn" onclick="window.location.href='profile.html'">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<script>
+let user = JSON.parse(localStorage.getItem("currentUser"));
+if (!user) { alert("Please login first."); window.location.href="login.html"; }
+
+// Load existing values
+document.getElementById("name").value = user.name || "";
+document.getElementById("phone").value = user.phone || "";
+document.getElementById("aadhar").value = user.aadhar || "";
+document.getElementById("gender").value = user.gender || "";
+document.getElementById("dob").value = user.dob || "";
+document.getElementById("address").value = user.address || "";
+document.getElementById("profilePreview").src = user.photo ? `http://localhost:5000/uploads/${user.photo}` : "images/default-user.png";
+
+// Preview new photo
+document.getElementById("photoInput").addEventListener("change", function() {
+    const file = this.files[0];
+    if(file) document.getElementById("profilePreview").src = URL.createObjectURL(file);
+});
+
+// Save Changes
+document.getElementById("editProfileForm").addEventListener("submit", async function(e){
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("name", document.getElementById("name").value);
+    formData.append("phone", document.getElementById("phone").value);
+    formData.append("aadhar", document.getElementById("aadhar").value);
+    formData.append("gender", document.getElementById("gender").value);
+    formData.append("dob", document.getElementById("dob").value);
+    formData.append("address", document.getElementById("address").value);
+
+    const photoFile = document.getElementById("photoInput").files[0];
+    if(photoFile) formData.append("photo", photoFile);
+
+    try {
+        const response = await fetch(`http://localhost:5000/api/users/${user._id}`, {
+            method: "PUT",
+            body: formData
+        });
+
+        const result = await response.json();
+
+        if(result.success){
+            localStorage.setItem("currentUser", JSON.stringify(result.user));
+            alert("Profile Updated Successfully ✅");
+            window.location.href = "profile.html";
+        } else {
+            alert("Update Failed ❌");
+        }
+    } catch(err) {
+        console.error(err);
+        alert("Server Error ❌");
+    }
+});
+
+</script>
+
+</body>
+</html>

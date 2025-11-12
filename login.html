@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ramya Residency</title>
+
+  <!-- Link to css -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Import fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body class="login-page">
+
+  <!-- Navbar -->
+  <section class="navbar">
+    <div class="nav-1">
+      <h1>Ramya Residency</h1>
+    </div>
+
+    <div class="nav-2">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="rooms.html">Rooms</a></li>
+        <li><a href="my-bookings.html">Booking</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html" id="loginLink">Login</a></li>
+
+        <li class="user-menu" id="userMenu" style="display:none;">
+          <i class="fa-solid fa-circle-user" style="color: #3b161e; cursor:pointer;"></i>
+          <ul class="dropdown" id="userDropdown">
+            <li><a href="#" id="profileBtn">Profile</a></li>
+            <li><a href="#" id="logoutBtn">Logout</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- Login Form -->
+  <form id="loginForm">
+    <div class="container">
+      <h1>Login</h1>
+      <p class="subtitle">Welcome back! Please log in.</p>
+
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" name="email" id="email" placeholder="Enter your email">
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" name="password" id="password" placeholder="Enter your password">
+      </div>
+
+      <div class="remember">
+        <label><input type="checkbox"> Remember me</label>
+        <a href="./reset-password.html">Forgot Password?</a>
+      </div>
+
+      <button class="btn" type="submit">Login</button>
+
+      <div class="signup-text">
+        Don’t have an account? <a href="signup.html">Sign up</a>
+      </div>
+    </div>
+  </form>
+
+  <!-- Login Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const loginForm = document.getElementById("loginForm");
+      if (!loginForm) return;
+
+      loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        try {
+          const response = await fetch("http://localhost:5000/api/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+          });
+
+          const data = await response.json();
+          console.log("Login Response:", data);
+
+          if (data.success) {
+    alert("✅ Login Successful");
+    localStorage.setItem("currentUser", JSON.stringify(data.user));
+    // Only save token if it exists
+    if (data.token) localStorage.setItem("token", data.token);
+
+    // Redirect
+    window.location.href = "index.html";
+} else {
+    alert("❌ " + (data.message || "Login failed"));
+}
+        } catch (error) {
+          console.error("Error during login:", error);
+          alert("❌ An error occurred. Please try again.");
+        }
+
+      });
+    });
+
+
+    document.getElementById("forgotPasswordLink").addEventListener("click", async function(e){
+  e.preventDefault();
+  const email = prompt("Enter your email for password reset:");
+  if (!email) return;
+
+  try {
+    const res = await fetch("http://localhost:5000/api/forgot-password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email })
+    });
+    const data = await res.json();
+    alert(data.message); // Shows success or error message
+  } catch(err) {
+    console.error(err);
+    alert("Server error. Try again later.");
+  }
+});
+  </script>
+
+  <!-- Main Script -->
+  <script src="./script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramya Residency</title>
+
+    <!-- Link to css -->
+    <link rel="stylesheet" href="style.css">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- import font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <section class="navbar">
+        <div class="nav-1">
+            <h1>Ramya Residency</h1>
+        </div>
+
+        <div class="nav-2">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="my-bookings.html">Booking</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+ <li class="user-menu" id="userMenu" style="display:none;">
+    <i class="fa-solid fa-circle-user" style="color: #3b161e; cursor:pointer;"></i>
+    <ul class="dropdown" id="userDropdown">
+        <li><a href="#" id="profileBtn">Profile</a></li>
+        <li><a href="profile.html" id="logoutBtn">Logout</a></li>
+    </ul>
+</li>
+
+
+            </ul>
+
+        </div>
+
+    </section>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-content">
+                <h1>Welcome to Ramya Residency</h1>
+                <p class="lead">Comfortable stays, friendly service, and great locations — your home away from home.</p>
+
+                <div class="hero-ctas">
+                    <a class="btn btn-primary" href="rooms.html">View Rooms</a>
+                    <a class="btn btn-secondary" href="contact.html">Contact Us</a>
+                </div>
+            </div>
+
+            <div class="hero-media" aria-hidden="true">
+                <img src="./images/banner.jpg" alt="Ramya Residency lobby" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking -->
+    <section class="book">
+        <div class="check-room">
+            <div class="field">
+                <p>Check In</p>
+                <input type="date" name="" id="">
+            </div>
+
+            <div class="field">
+                <p>Check Out</p>
+                <input type="date" name="" id="">
+            </div>
+
+            <div class="field">
+                <p>Adults</p>
+                <select name="" id="">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4+</option>
+
+                </select>
+            </div>
+            <div class="field">
+                <p>Children</p>
+                <select name="" id="">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4+</option>
+
+                </select>
+            </div>
+
+            <div class="field action">
+                <p></p>
+                <button class="check"  id="searchRoom">check Availability</button>
+            </div>
+
+
+
+        </div>
+
+    </section>
+
+    <!-- Rooms Photos -->
+
+    <section class="rooms">
+        <div class="container">
+            <h1>Our Rooms</h1>
+            <p class="rooms-intro">Choose from a range of comfortable rooms designed for relaxation and convenience.</p>
+            <div class="room-photo">
+                <div>
+                    <img src="./images/singleroom.jpg" alt="">
+
+                    <h1>Single Room</h1>
+                    <h3>₹500/Per Day</h3>
+                </div>
+
+                <div>
+                    <img src="./images/double.jpg" alt="">
+
+                    <h1>Double Room</h1>
+                    <h3>₹700/Per Day</h3>
+                </div>
+
+                <div>
+                    <img src="./images/family.jpg" alt="">
+
+                    <h1>Family Room</h1>
+                    <h3>₹1200/Per Day</h3>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- photos -->
+    <section class="photos">
+        <h1>Photos</h1>
+        <p>Explore our gallery — use the arrows to browse photos of the rooms and facilities.</p>
+
+        <div class="gallery" aria-live="polite">
+            <button  class="photo-nav prev" aria-label="Previous photo">&lt;</button>
+            <img id="gallery-image" src="./images/family.jpg" alt="Gallery image">
+            <button  class="photo-nav next" aria-label="Next photo">&gt;</button>
+        </div>
+
+    </section>
+
+    <!-- Food Menu -->
+    <section class="menu-section">
+        <div class="menu-bg">
+            <div class="menu-overlay">
+                <div class="container">
+                    <h2>Our Food Menu</h2>
+                    <p class="menu-intro">Freshly prepared breakfast, local favourites and delicious desserts — available daily. Browse some highlights below.</p>
+
+                    <div class="menu-items">
+                        <div class="menu-card">
+                            <h3>Breakfast Platter</h3>
+                            <p>Idli, dosa or poha served with chutney and sambar.</p>
+                            <span class="menu-price">₹120</span>
+                        </div>
+
+                        <div class="menu-card">
+                            <h3>Local Thali</h3>
+                            <p>Seasonal veg curry, dal, rice, chapati and salad.</p>
+                            <span class="menu-price">₹250</span>
+                        </div>
+
+                        <div class="menu-card">
+                            <h3>Grilled Sandwich</h3>
+                            <p>Toasted sandwich with fresh veggies and cheese.</p>
+                            <span class="menu-price">₹140</span>
+                        </div>
+
+                        <div class="menu-card">
+                            <h3>Paneer Butter Masala</h3>
+                            <p>Rich tomato and butter gravy with soft paneer cubes.</p>
+                            <span class="menu-price">₹220</span>
+                        </div>
+
+                        <div class="menu-card">
+                            <h3>Gulab Jamun</h3>
+                            <p>Classic syrupy Indian dessert.</p>
+                            <span class="menu-price">₹80</span>
+                        </div>
+
+                        <div class="menu-card">
+                            <h3>Filter Coffee</h3>
+                            <p>Authentic south Indian filter coffee, served hot.</p>
+                            <span class="menu-price">₹60</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Guest Reviews -->
+    <section class="reviews">
+        <div class="container">
+            <h2>Guest Reviews</h2>
+            <p class="reviews-intro">What our guests say about their stay and our food.</p>
+
+            <div class="review-grid">
+                <article class="review-card">
+                    <p class="quote">"Lovely stay — friendly staff and clean rooms. The local thali was delicious!"</p>
+                    <div class="review-meta">
+                        <span class="review-name">Asha R.</span>
+                        <span class="review-rating">★★★★★</span>
+                    </div>
+                </article>
+
+                <article class="review-card">
+                    <p class="quote">"Comfortable bed, great location and very helpful service. Breakfast was fresh every morning."</p>
+                    <div class="review-meta">
+                        <span class="review-name">Rahul K.</span>
+                        <span class="review-rating">★★★★☆</span>
+                    </div>
+                </article>
+
+                <article class="review-card">
+                    <p class="quote">"Loved the desserts — Gulab jamun was a highlight. Will come back next visit."</p>
+                    <div class="review-meta">
+                        <span class="review-name">Priya S.</span>
+                        <span class="review-rating">★★★★★</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+   
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-col about">
+                <h3>Ramya Residency</h3>
+                <p>Comfortable stays with warm hospitality. Located centrally and close to local attractions.</p>
+            </div>
+
+            <nav class="footer-col quick-links" aria-label="Footer navigation">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rooms.html">Rooms</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="footer-col contact">
+                <h4>Contact</h4>
+                <address>
+                    12, Main Road,<br>
+                    Nagapattinam, TamilNadu - 611101<br>
+                    <a href="tel:+919900112233">+91 99001 12233</a><br>
+                    <a href="mailto:info@ramyaresidency.example">info@ramyaresidency.example</a>
+                </address>
+            </div>
+
+            <div class="footer-col social">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <small>© <span id="footer-year"></span> Ramya Residency — All rights reserved.</small>
+            </div>
+        </div>
+    </footer>
+     <script src="script.js"></script>
+
+     <script>
+        
+document.addEventListener("DOMContentLoaded", () => {
+  const checkBtn = document.getElementById("searchRoom");
+
+  if (checkBtn) {
+    checkBtn.addEventListener("click", () => {
+      // ✅ Simple redirect to rooms page
+      window.location.href = "rooms.html";
+    });
+  }
+});
+
+
+     </script>
+</body>
+
+</html>
